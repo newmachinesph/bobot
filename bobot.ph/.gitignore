@@ -1,0 +1,42 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+.next/
+out/
+dist/
+build/
+*.egg-info/
+
+# Vercel
+.vercel/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Bot daemon secrets
+.bot_keys.json
+
+# Claude
+.claude/projects/

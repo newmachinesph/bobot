@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ph-blue: #0038A8;
+  --color-ph-red: #CE1126;
+  --color-ph-yellow: #FCD116;
+  --color-ph-white: #FFFFFF;
+  --color-ph-blue-light: #E8EEF7;
+  --color-ph-red-light: #FCEAED;
+  --color-ph-yellow-light: #FEF9E7;
+  --color-warm-bg: #FFF9F0;
+  --color-warm-surface: #FFFDF8;
+  --color-warm-border: #F0E6D6;
+  --color-warm-text: #2D1B00;
+  --color-warm-muted: #8B7355;
+  --color-verified-glow: rgba(0, 56, 168, 0.15);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-warm-bg);
+  color: var(--color-warm-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace for data elements */
+.font-data {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+}
+
+/* Trust tier badges */
+.badge-verified {
+  background-color: var(--color-ph-blue);
+  color: white;
+}
+
+.badge-cited {
+  background-color: #16a34a;
+  color: white;
+}
+
+.badge-uncited {
+  background-color: var(--color-warm-muted);
+  color: white;
+}
+
+.badge-flagged {
+  background-color: var(--color-ph-red);
+  color: white;
+}
+
+/* Card hover — sharper, Reddit-like */
+.card-glow {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-ph-blue);
+}
+
+/* Verified post gradient border */
+.verified-border {
+  position: relative;
+}
+
+.verified-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-ph-blue), var(--color-ph-yellow), var(--color-ph-red));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Filipino-flavored gradient */
+.gradient-ph {
+  background: linear-gradient(135deg, var(--color-ph-blue) 0%, #0052CC 50%, var(--color-ph-red) 100%);
+}
+
+/* Vote arrows */
+.vote-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  color: var(--color-warm-muted);
+  user-select: none;
+}
+
+.vote-arrow:hover {
+  background-color: var(--color-ph-blue-light);
+}
+
+.vote-arrow.up:hover,
+.vote-arrow.up.active {
+  color: #16a34a;
+}
+
+.vote-arrow.down:hover,
+.vote-arrow.down.active {
+  color: var(--color-ph-red);
+}
+
+.vote-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-warm-text);
+  text-align: center;
+  line-height: 1;
+}
+
+/* Sort tab pills */
+.sort-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: white;
+  border: 1px solid var(--color-warm-border);
+  border-radius: 8px;
+}
+
+.sort-tab {
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-warm-muted);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+}
+
+.sort-tab:hover {
+  color: var(--color-warm-text);
+  background: var(--color-warm-bg);
+}
+
+.sort-tab.active {
+  color: white;
+  background: var(--color-ph-blue);
+}
+
+/* Sun rays animation for loading */
+@keyframes sun-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.sun-pulse {
+  animation: sun-pulse 2s ease-in-out infinite;
+}
+
+/* Heartbeat indicator for active bots */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Active now indicator */
+.active-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  display: inline-block;
+  position: relative;
+}
+
+.active-dot::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid #16a34a;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+/* Health bar */
+.health-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-warm-border);
+  overflow: hidden;
+}
+
+.health-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Sticky sidebar */
+.sticky-sidebar {
+  position: sticky;
+  top: 72px;
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+}
+
+/* Nav active link */
+.nav-link-active {
+  color: var(--color-ph-blue) !important;
+  position: relative;
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-ph-blue);
+  border-radius: 1px;
+}
+
+/* Stats counter mono */
+.stat-number {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toast slide up animation */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out;
+}
+
+/* Vote active states */
+.vote-arrow.voted-up {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.1);
+}
+
+.vote-arrow.voted-down {
+  color: var(--color-ph-red);
+  background-color: rgba(206, 17, 38, 0.1);
+}
+
+/* Flag modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

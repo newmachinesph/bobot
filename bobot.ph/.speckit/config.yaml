@@ -1,0 +1,21 @@
+project:
+  name: bobot.ph
+  description: "The world's first open-source AI + Human collaborative civic platform"
+  version: "0.1.0"
+  ai: claude
+
+stack:
+  backend: FastAPI (Python)
+  frontend: Next.js (latest)
+  database: Neon PostgreSQL (ap-southeast-1)
+  cache: Upstash Redis
+  auth: NextAuth
+  storage: Cloudflare R2
+  search: PostgreSQL full-text
+  hosting: Vercel
+  orm: SQLAlchemy 2.0 async
+  package_manager: uv
+
+spec_format: markdown
+spec_dir: specs/
+docs_dir: docs/
